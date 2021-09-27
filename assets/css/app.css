@@ -1,0 +1,20 @@
+body {
+    background-color: #eeeeee;
+}
+
+.app#head {
+    background-color: #ffffff;
+    margin: 40px 100px 0 100px;
+}
+
+.app#body {
+    background-color: #ffffff;
+    margin: 0px 100px 0 100px;
+}
+
+.app#foot {
+    background-color: #ffffff;
+    margin: 0px 100px 40px 100px;
+    padding: 20px;
+    text-align: center;
+}
