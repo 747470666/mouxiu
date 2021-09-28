@@ -1,0 +1,37 @@
+#body_index.simple{
+    background: #ffffff;
+}
+
+#body_index_head.simple{
+}
+#body_index_head_title.simple{
+    color: #495057;
+    font-weight: lighter;
+}
+#body_index_head_introduction.simple{
+    font-weight: normal;
+}
+
+#body_index.simple .body_article_div{
+    overflow: hidden;
+}
+#body_index.simple .body_article_img{
+    margin: 20px 20px 20px 0;
+    width: 30%;
+    clear: both;
+}
+#body_index.simple .body_article_p{
+    font-size: 16px;
+}
+
+
+@media all and (min-width: 400px) {
+    #body_index.simple .body_article_img{
+        min-width: 400px;
+    }
+}
+@media all and (max-width: 399px) {
+    #body_index.simple .body_article_img{
+        width: 100%;
+    }
+}

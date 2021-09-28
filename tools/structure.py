@@ -4,6 +4,9 @@ from dash import html
 from dash import dcc
 from dash.dependencies import Input, Output
 
+from tools.router_setting import get_router_setting, get_router_page
+from tools.style import head_tab_selected
+
 
 # my_head、my_body、my_foot三块区域的大小及相对位置的设置（默认html全部在body中）
 # 单例模式，后期方便设置一键切换模式
@@ -35,63 +38,53 @@ class PageStruct(object):
         return foot_content(self._foot['style'], page_index)
 
 
+pathname_setting, pagename_setting, tab_id, tab_dict = get_router_setting()
+
+
+# 制作导航栏的按钮
+def head_tab(style):
+    tab_list = []
+    for i in range(len(pagename_setting)):
+        tab_list.append(
+            dcc.Tab(label=pagename_setting[i], value=tab_id[i], className=style,
+                    selected_style=head_tab_selected(style))
+        )
+    return tab_list
+
+
 # 头内容样式
 def head_content(style, page_index):
     return (
-        html.Div(id='head', className=style,
-                 children=[
-                     html.Div(id='head_titles', className=style, children=[
-                         html.H1('汪颖', id='head_titles_name', className=style),
-                         html.P('人生如逆旅，我亦是行人。', id='head_titles_introduction', className=style)
-                     ]),
-                     dcc.Tabs(
-                         id="head_tabs",
-                         value=page_index,
-                         parent_className='custom-tabs',
-                         className=style,
-                         children=[
-                             dcc.Tab(label='首页', value='page1', className=style),
-                             dcc.Tab(label='研究',  value='page2', className=style),
-                             dcc.Tab( label='关于', value='page3', className=style),
-                         ]),
-                     dcc.Location(id='head_url', refresh=True),
-                 ])
+        html.Div(
+            id='head', className=style,
+            children=[
+                html.Div(id='head_titles', className=style, children=[
+                    html.H1('汪颖', id='head_titles_name', className=style),
+                    html.P('人生如逆旅，我亦是行人。', id='head_titles_introduction', className=style)
+                ]),
+                dcc.Tabs(id="head_tabs", value=page_index, className=style, children=head_tab(style)),
+                dcc.Location(id='head_url', refresh=True),
+            ])
     )
 
 
 @app.callback(Output('head_url', 'pathname'),
               Input('head_tabs', 'value'))
 def render_content(tab):
-    if tab == 'page1':
-        return '/'
-    elif tab == 'page2':
-        return '/research'
-    elif tab == 'page3':
-        return '/mine'
+    return tab_dict[tab]
 
 
 # 主体内容样式
 def body_content(style, page_index):
-    if page_index == 'page1':
-        return html.Div(id='body', className=style, children='这是首页！')
-    elif page_index == 'page2':
-        return html.Div(id='body', className=style, children='研究或进展')
-    elif page_index == 'page3':
-        return html.Div(id='body', className=style, children='关于我以及联系我')
+    return (
+        html.Div(
+            id='body', className=style,
+            children=get_router_page(style, page_index)
+        )
+    )
 
 
 # 页脚内容样式
 def foot_content(style, page_index):
-    import pandas as pd
-    df = pd.DataFrame({
-        "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
-        "Amount": [4, 1, 2, 2, 4, 5],
-        "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
-    })
-    import plotly.express as px
-    fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
     return html.Footer(id='foot', className=style, children=[
-        dcc.Graph(
-            id='example-graph',
-            figure=fig
-        ), html.Div('©版权所有，侵权必究'), html.Div(' 2021')])
+        html.Div('©版权所有，侵权必究'), html.Div(' 2021')])

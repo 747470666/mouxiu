@@ -30,6 +30,7 @@ import tools.router as router
 # 开关 switch: on/off
 # 默认样式 style: string （可以自己设计样式）
 mySetting = {
+    'main': 'simple',
     'head': {
         'style': 'simple',
     },
@@ -45,7 +46,7 @@ page_struct = PageStruct(mySetting)
 
 # ==============================================================
 # app入口
-app.layout = html.Div(id='app', children=[
+app.layout = html.Div(id='app', className=mySetting['main'], children=[
     dcc.Location(id='url', refresh=False),
     html.Div(id='page')
 ])
