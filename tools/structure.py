@@ -40,30 +40,19 @@ def head_content(style, page_index):
     return (
         html.Div(id='head', className=style,
                  children=[
+                     html.Div(id='head_titles', className=style, children=[
+                         html.H1('汪颖', id='head_titles_name', className=style),
+                         html.P('人生如逆旅，我亦是行人。', id='head_titles_introduction', className=style)
+                     ]),
                      dcc.Tabs(
                          id="head_tabs",
                          value=page_index,
                          parent_className='custom-tabs',
-                         className='custom-tabs-container',
+                         className=style,
                          children=[
-                             dcc.Tab(
-                                 label='首页',
-                                 value='page1',
-                                 className='custom-tab',
-                                 selected_className='custom-tab--selected'
-                             ),
-                             dcc.Tab(
-                                 label='研究',
-                                 value='page2',
-                                 className='custom-tab',
-                                 selected_className='custom-tab--selected'
-                             ),
-                             dcc.Tab(
-                                 label='关于',
-                                 value='page3',
-                                 className='custom-tab',
-                                 selected_className='custom-tab--selected'
-                             ),
+                             dcc.Tab(label='首页', value='page1', className=style),
+                             dcc.Tab(label='研究',  value='page2', className=style),
+                             dcc.Tab( label='关于', value='page3', className=style),
                          ]),
                      dcc.Location(id='head_url', refresh=True),
                  ])
@@ -81,7 +70,7 @@ def render_content(tab):
         return '/mine'
 
 
-# 头内容样式
+# 主体内容样式
 def body_content(style, page_index):
     if page_index == 'page1':
         return html.Div(id='body', className=style, children='这是首页！')
@@ -91,7 +80,7 @@ def body_content(style, page_index):
         return html.Div(id='body', className=style, children='关于我以及联系我')
 
 
-# 头内容样式
+# 页脚内容样式
 def foot_content(style, page_index):
     import pandas as pd
     df = pd.DataFrame({

@@ -31,13 +31,13 @@ import tools.router as router
 # 默认样式 style: string （可以自己设计样式）
 mySetting = {
     'head': {
-        'style': 'wordpress',
+        'style': 'simple',
     },
     'body': {
-        'style': 'wordpress',
+        'style': 'simple',
     },
     'foot': {
-        'style': 'wordpress',
+        'style': 'simple',
     },
 }
 # 结构初始化
