@@ -48,6 +48,7 @@ page_struct = PageStruct(mySetting)
 # app入口
 app.layout = html.Div(id='app', className=mySetting['main'], children=[
     dcc.Location(id='url', refresh=False),
+    html.Meta(name='viewport', content="initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"),
     html.Div(id='page')
 ])
 

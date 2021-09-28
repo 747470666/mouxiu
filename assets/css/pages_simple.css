@@ -16,8 +16,7 @@
     overflow: hidden;
 }
 #body_index.simple .body_article_img{
-    margin: 20px 20px 20px 0;
-    width: 30%;
+    width: 400px;
     clear: both;
 }
 #body_index.simple .body_article_p{
