@@ -36,11 +36,12 @@ python app.py
         |-- css 样式库
         |-- js 脚本库
         |-- static 静态资源
-    |-- src #项目源文件
-        |-- components #一些组件库
-        |-- pages #所有页面
-    |-- tools #常规工具
+    |-- src #页面源文件
+        |-- components #页面组件库
+        |-- pages #页面内容
+    |-- tools #项目工具库
         |-- router.py #路由配置
+    |-- core.py #引入Dash.app方便回调
     |-- app.py #App入口
     |-- README.md #介绍文档
 ```

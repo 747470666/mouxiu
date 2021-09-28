@@ -2,19 +2,25 @@ body {
     background-color: #eeeeee;
 }
 
-.app#head {
+#head.wordpress {
     background-color: #ffffff;
     margin: 40px 100px 0 100px;
 }
-
-.app#body {
+#body.wordpress {
     background-color: #ffffff;
     margin: 0px 100px 0 100px;
 }
-
-.app#foot {
+#foot.wordpress {
     background-color: #ffffff;
     margin: 0px 100px 40px 100px;
     padding: 20px;
     text-align: center;
+}
+
+#body {
+    padding: 100px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bolder;
+    border: sandybrown solid 20px;
 }

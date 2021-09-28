@@ -12,34 +12,31 @@
 
 # ==============================================================
 # 引入dash包
-import dash
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
 
 # ==============================================================
+# app的初始化，自动引入assets中的所有资源
+from core import app
 # 引入自定义框架及组件
-from src.components.page_structures import PageStruct
+from tools.structure import PageStruct
+import tools.router as router
 
 # ==============================================================
 # 初始化
-# app的初始化，自动引入assets中的所有资源
-app = dash.Dash(__name__)
 
 # 页面结构初始化
 # 开关 switch: on/off
 # 默认样式 style: string （可以自己设计样式）
 mySetting = {
     'head': {
-        'switch': 'on',
         'style': 'wordpress',
     },
     'body': {
-        'switch': 'on',
         'style': 'wordpress',
     },
     'foot': {
-        'switch': 'on',
         'style': 'wordpress',
     },
 }
@@ -49,44 +46,17 @@ page_struct = PageStruct(mySetting)
 # ==============================================================
 # app入口
 app.layout = html.Div(id='app', children=[
-    page_struct.my_head(),
-    page_struct.my_body(),
-    page_struct.my_foot(),
-    dcc.Tabs(id="tabs-styled-with-inline", value='tab-1', children=[
-        dcc.Tab(label='Tab 1', value='tab-1'),
-        dcc.Tab(label='Tab 2', value='tab-2'),
-        dcc.Tab(label='Tab 3', value='tab-3'),
-        dcc.Tab(label='Tab 4', value='tab-4'),
-    ]),
-    html.Div(id='tabs-content-inline')
+    dcc.Location(id='url', refresh=False),
+    html.Div(id='page')
 ])
 
 
 # ==============================================================
-# 定义回调
-@app.callback(Output('tabs-content-inline', 'children'),
-              Input('tabs-styled-with-inline', 'value'))
-def render_content(tab):
-    if tab == 'tab-1':
-        return html.Div([
-            html.H3('Tab content 1')
-        ])
-    elif tab == 'tab-2':
-        return html.Div([
-            html.H3('Tab content 2')
-        ])
-    elif tab == 'tab-3':
-        return html.Div([
-            html.H3('Tab content 3')
-        ])
-    elif tab == 'tab-4':
-        return html.Div([
-            html.H3('Tab content 4')
-        ])
-    else:
-        return html.Div([
-            html.H3('Error!')
-        ])
+# 定义router响应回调
+@app.callback(Output('page', 'children'),
+              Input('url', 'pathname'))
+def display_page(pathname):
+    return router.route_page(pathname)
 
 
 server = app.server
