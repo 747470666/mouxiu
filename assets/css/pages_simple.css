@@ -13,6 +13,7 @@
 }
 
 #body_index.simple .body_article_div{
+    margin-top: 20px;
     overflow: hidden;
 }
 #body_index.simple .body_article_img{
@@ -24,13 +25,14 @@
 }
 
 
-@media all and (min-width: 400px) {
+@media all and (min-width: 500px) {
     #body_index.simple .body_article_img{
         min-width: 400px;
     }
 }
-@media all and (max-width: 399px) {
+@media all and (max-width: 499px) {
     #body_index.simple .body_article_img{
+        padding: 0;
         width: 100%;
     }
 }
