@@ -22,6 +22,11 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host pypi.tuna
 ```bash
 pip install pandas
 ```
+还有各种插件
+```bash
+pip install dash-bootstrap-components
+pip install dash_vtk
+```
 
 ## 启动
 ```bash
@@ -41,6 +46,9 @@ python app.py
         |-- pages #页面内容
     |-- tools #项目工具库
         |-- router.py #路由配置
+        |-- router_setting.py #在无数据库时的路由基本参数
+        |-- structure.py 页面基本结构
+        |-- style.py 一些结构的样式
     |-- core.py #引入Dash.app方便回调
     |-- app.py #App入口
     |-- README.md #介绍文档

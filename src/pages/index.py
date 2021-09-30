@@ -2,16 +2,7 @@ from dash import html
 from dash import dcc
 
 from src.components.article import creat_article
-
-
-def index_page_head(style):
-    return html.Div(
-        id='body_index_head', className=style,
-        children=[
-            html.H1('主页', id='body_index_head_title', className=style),
-            html.P('个人介绍与动态展示', id='body_index_head_introduction', className=style)
-        ]
-    )
+from src.components.page_head import page_head
 
 
 # 后期可以设置为自动加载文章，目前暂时作为测试
@@ -19,15 +10,88 @@ def index_page(style):
     return html.Div(
         id='body_index', className=style,
         children=[
-            index_page_head(style),
-            creat_article([
-                'assets/static/images/computer.png',
-                'assets/static/images/computer.png',
-                'assets/static/images/computer.png'
-            ], [
-                '11:02沪指跌逾2％，石油、航运股领跌。10:37中国恒大持续走高，截至发稿张超16%，恒大汽车、恒大物业涨约涨10%，消息面上，中国恒大近100亿元出售盛京银行19.93%股权。10:13锰硅主力合约跌超5%，此前一度涨超5%；硅铁主力合约跌近1%，此前一度涨超8%。10:00中国恒大、恒大汽车盘中拉升，现均涨超10%。09:51华人置业在港交所暂停交易，停牌前大涨33%。09:48发改委发布关于做好发电供热企业直保煤炭中长期合同全覆盖铁路运力保障有关工作的通知：联动提高电煤中长期合同履约率。进一步加大对发电供热煤炭运输的倾斜力度。09:26“双硅”再创历史新高，硅铁主力合约涨超8%，现报16566元/吨；锰硅主力合约涨超5%，现报12770元/吨。09:24富时中国A50指数期货日内跌超1%。09:21央行公开市场今日将进行1000亿元人民币14天期逆回购操作。中标利率2.35%，与此前持平。09:00【三部门：2020年末中国对外直接投资存量达2.58万亿美元】9月29日，商务部、国家统计局和国家外汇管理局联合发布《2020年度中国对外直接投资统计公报》，正式公布2020年中国对外直接投资统计数据。2020年中国对外直接投资1537.1亿美元，同比增长12.3%，流量规模首次位居全球第一。2020年末，中国对外直接投资存量达2.58万亿美元，次于美国（8.13万亿美元）和荷兰（3.8万亿美元）。08:56美元兑日元USD/JPY突破前高111.68，创去年3月以来新高。08:29【31省区市新增11例本土确诊病例 其中黑龙江新增本土确诊病例8例】国家卫健委：9月28日0—24时，31个省（自治区、直辖市）和新疆生产建设兵团报告新增确诊病例25例。其中境外输入病例14例（云南8例，上海2例，福建2例，江苏1例，广东1例）；本土病例11例（黑龙江8例，均在哈尔滨市；福建3例，均在厦门市）。无新增死亡病例。无新增疑似病例。08:18【今日财经日历大事件提醒】经济数据关注：①17:00 欧元区9月消费者信心指数终值；②19:00 美国上周MBA抵押贷款申请指数环比；③20:30 加拿大8月工业生产价格环比；④22:00 美国8月二手房销售签约量环比。全球央行和政府动态关注：①10:00 国新办就加快推进上海具有全球影响力的科技创新中心建设有关情况举行发布会；②16:00 国务院政策例行吹风会，介绍《“十四五”全民医疗保障规划》有关情况；③19:35 欧洲央行官员Centeno、Stournaras、Makhlouf讲话；④20:00 欧洲央行副行长De Guindos讲话；⑤21:00 美国费城联储行长Harker讲话；⑥22:30 欧洲央行首席经济学家Lane讲话；⑦23:45 英国央行行长、日本央行行长、欧洲央行行长、美联储主席在欧洲央行论坛上讲话；⑧29日 日本自民党总裁选举，获胜者将出任日本首相；⑨30日01:00 美国旧金山联储行长Daly讲话；⑩30日02:00 美国亚特兰大联储行长Bostic讲话。08:01【日韩股市大幅低开 日经指数跌近2% 追随隔夜美股跌势】日经225指数开盘下跌1.9%，报29611.92点。韩国KOSPI指数开盘下跌1.74%，报3044.08点。隔夜标普500指数下跌2%，创出5月份以来最大跌幅，因对美国债务上限僵局的担忧升温，风险资产加速下跌。07:58黑龙江卫健委：2021年9月28日0-24时，黑龙江省新增新冠肺炎本土确诊病例8例（哈尔滨市香坊区1例、松北区2例、巴彦县5例），新增本土无症状感染者2例（哈尔滨市巴彦县1例、绥化市北林区1例）。07:56【盛京银行公告：沈阳市国资委附属公司成为第一大股东】盛京银行公告称，盛京金控出资9,993,000,001.5元人民币受让恒大南昌所持有的本行1,753,157,895股内资股股份，占本行已发行总股份19.93%。转让完成后，盛京金控将持有本行1,829,225,327股内资股股份，占本行已发行总股份的20.79%，成为本行第一大股东。07:47【中国恒大：以99.93亿元出售17.5亿股盛京银行股份】中国恒大：董事会宣布，于2021年9月28日，本公司一家全资子公司作为转让方，与受让方签订协议，将其持有盛京银行17.5亿股的非流通内资股，占盛京银行已发行股份的19.93%转让予受让方。对价为每股人民币5.7元，合计人民币99.93亿元，沈阳盛京金控投资集团有限公司作为受让方。07:01市场消息：美国参议院民主党人寻求在没有债务上限的情况下就临时支出法案投票。04:30美国至9月24日当周API原油库存412.7万桶，前值-610.8万桶，预期-233.3万桶。04:02标普500指数收跌2.07%，创5月以来最大单日跌幅。04:00美股表现低迷，三大股指集体下跌，道指收跌1.63%，美国抗疫概念、半导体、激光雷达概念股跌幅居前，热媒、油气、NFT概念股等少数板块上扬。01:37美国财长耶伦：如果美国发生债务违约，可能会触发严重的金融崩塌。',
-                'bbb',
-                'ccc'
-            ])
+            page_head(style, '主页'),
+            creat_article(
+                [
+                    {'src': '', 'width': 0},
+                    {'src': 'assets/static/images/computer.png', 'width': 0.3},
+                    {'src': 'assets/static/images/running.gif', 'width': 0.4},
+                ],
+                [
+                    '''
+                    1. [中国科学院](https://www.cas.cn/)
+                    2. [中国国家航天局](http://www.cnsa.gov.cn/index.html)
+                    3. [ESA-欧洲空间局](https://www.esa.int/)
+                    4. [NASA-美国国家航空航天局](https://www.nasa.gov/)
+                    ''',
+                    '''
+                    # 谋秀 - VSWBD科研小站 (Virtual Science Web Base-on Dash)
+                    **本项目目前由*汪颖*独立开发，目标是为科研工作者提供简单可用的个人网站建设**
+                    > Dash是一个很强大的全栈包（React for Python），整体代码采用Python开发，大大增加了可读性与减少了工程量，在不追求高并发、强交互的要求下是非常合适的开发选择。
+                    ## [Open Dash](https://github.com/plotly/dash)
+                    ### *Dash is the most downloaded, trusted Python framework for building ML & data science web apps*.
+                    #### 如何使用
+                    在你的`terminal`中, 下载包 `dash`：
+                    ```bash
+                    pip install dash
+                    ```
+                    在国内，我推荐使用`pip`代理来下载包：
+                    ```bash
+                    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple dash
+                    ```
+                    如果仍然存在问题，我推荐采用`trust`模式来下载：
+                    ```bash
+                    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host pypi.tuna.tsinghua.edu.cn dash
+                    ```
+
+                    #### 记住
+                    还需要下载pandas
+                    ```bash
+                    pip install pandas
+                    ```
+                    还有各种插件
+                    ```bash
+                    pip install dash-bootstrap-components
+                    pip install dash_vtk
+                    ```
+                    
+                    ## 启动
+                    ```bash
+                    python app.py
+                    ```
+                    
+                    ## 目录结构
+                    本项目的初始目录结构及介绍如下
+                    ```text
+                    |-- project #项目根目录
+                        |-- assets #项目使用资源库
+                            |-- css 样式库
+                            |-- js 脚本库
+                            |-- static 静态资源
+                        |-- src #页面源文件
+                            |-- components #页面组件库
+                            |-- pages #页面内容
+                        |-- tools #项目工具库
+                            |-- router.py #路由配置
+                            |-- router_setting.py #在无数据库时的路由基本参数
+                            |-- structure.py 页面基本结构
+                            |-- style.py 一些结构的样式
+                        |-- core.py #引入Dash.app方便回调
+                        |-- app.py #App入口
+                        |-- README.md #介绍文档
+                    ```
+                    ''',
+                    '''
+                    PS：分享以下代码
+                    ```py
+                    import dash
+                    import dash_bootstrap_components as dbc
+                    app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+                    # 设置允许超级回调，即DOM中一开始并不渲染该id元素，比较危险
+                    app.config.suppress_callback_exceptions = True
+                    ```
+                    ''',
+                ],
+            )
         ]
     )

@@ -5,7 +5,7 @@ from src.pages.about import about_page
 
 # 这里在下面利用了一个双向指向的字典，因此不要有重复的变量名
 pathname_setting = ['/', '/research', '/about']
-pagename_setting = ['首页', '研究', '关于']
+pagename_setting = ['主页', '研究', '关于']
 
 tab_dict = {}
 tab_id = []

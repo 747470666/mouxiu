@@ -1,0 +1,48 @@
+
+#body_head.simple{
+}
+#body_head_title.simple{
+    color: #495057;
+    font-weight: lighter;
+    font-size: 2.0em;
+}
+
+#body_index.simple .article_div, #body_research .article_div, #body_about .article_div{
+    margin-top: 20px;
+    overflow: hidden;
+}
+#body_index.simple .article_img, #body_research .article_img, #body_about .article_img{
+    clear: both;
+}
+#body_index.simple .article_md, #body_research .article_md, #body_about .article_md{
+    padding-top: 15px;
+    line-height: 1.8em;
+}
+#body_index.simple .article_md_addition, #body_research .article_md_addition, #body_about .article_md_addition{
+    padding-top: 15px;
+    line-height: 1.2em;
+    font-size: 0.92em;
+    overflow: auto;
+}
+@media all and (min-width: 550px) {
+    #body_index.simple .article_img, #body_research .article_img, #body_about .article_img{
+        min-width: 200px;
+    }
+}
+@media all and (max-width: 549px) {
+    #body_index.simple .article_img, #body_research .article_img, #body_about .article_img{
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+}
+
+#body_research .research_div{
+    border: #E9ECEF solid 1px;
+    padding: 0px 20px 10px 20px;
+    margin-top: 20px;
+}
+#body_research .research_card{
+    margin-top: 10px;
+    font-size: 0.96em;
+}
